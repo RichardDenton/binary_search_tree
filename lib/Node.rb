@@ -3,6 +3,10 @@ class Node
   attr_reader :data
   attr_accessor :left, :right
   
+  def <=>
+    data <=> data
+  end
+  
   def initialize(data)
     @data = data
     @left = nil
