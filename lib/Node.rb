@@ -3,8 +3,8 @@ class Node
   attr_reader :data
   attr_accessor :left, :right
   
-  def <=>
-    data <=> data
+  def <=>(other_node)
+    data <=> other_node.data
   end
   
   def initialize(data)
