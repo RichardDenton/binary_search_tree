@@ -16,25 +16,72 @@ class Tree
     return node
   end
 
-  # Gets the leaf not to use as a parent for insertion
-  def get_parent_leaf(value, node = @root)
-    return node if value < node.data and node.left.nil?
-    return node if value > node.data and node.right.nil?
-    
-    return get_parent_leaf(value, node.left) if value < node.data
-    return get_parent_leaf(value, node.right) if value > node.data
-  end
-
   def insert(value)
-    node = get_parent_leaf(value)
+    node = search(value)
+    return nil unless node.data != value
     new_node = Node.new(value)
     node.left = new_node if new_node < node
     node.right = new_node if new_node > node
+  end
+
+  def delete(value)
+    node = search(value)
+    return if node.nil?
+    
+    predecessor = get_predecessor(node)
+    
+    # Delete the node if it is a leaf node
+    if is_leaf?(node)
+      predecessor.left = nil if predecessor.left == node
+      predecessor.right = nil if predecessor.right == node
+      return
+    end
+
+    # Delete if one child
+    if node.left.nil? or node.right.nil?
+      child = node.left if !node.left.nil?
+      child = node.right if !node.right.nil?
+      predecessor.left = child if predecessor.left == node
+      predecessor.right = child if predecessor.right == node
+      return
+    end
+
+    # Delete if two children
+
   end
 
   def pretty_print(node = @root, prefix = '', is_left = true)
     pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right
     puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.data}"
     pretty_print(node.left, "#{prefix}#{is_left ? '    ' : '│   '}", true) if node.left
+  end
+
+  # Returns the node searched for or its parent leaf is the node does not exist
+  def search(value, node = @root)
+      return node if value < node.data and node.left.nil?
+      return node if value > node.data and node.right.nil?
+      return node if value == node.data
+      
+      return search(value, node.left) if value < node.data
+      return search(value, node.right) if value > node.data
+  end
+
+  # private
+
+  def get_predecessor(search_node, current_node = @root)
+    return current_node if current_node.left == search_node or current_node.right == search_node
+    return search_node if search_node == @root
+    
+    return get_predecessor(search_node, current_node.left) if search_node < current_node
+    return get_predecessor(search_node, current_node.right) if search_node > current_node
+  end
+
+  def get_smallest_child(node)
+    return node if node.left.nil?
+    return get_smallest_child(node.left)
+  end
+
+  def is_leaf?(node)
+    return (node.left.nil? and node.right.nil?)
   end
 end
