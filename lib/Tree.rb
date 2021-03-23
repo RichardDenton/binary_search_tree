@@ -26,28 +26,54 @@ class Tree
 
   def delete(value)
     node = search(value)
-    return if node.nil?
+    return if node.data != value
     
     predecessor = get_predecessor(node)
     
     # Delete the node if it is a leaf node
-    if node.is_leaf?
+    if node.number_of_children == 0
       predecessor.left = nil if predecessor.left == node
       predecessor.right = nil if predecessor.right == node
+      @root = nil if @root == node
       return
     end
 
     # Delete if one child
-    if node.left.nil? or node.right.nil?
+    if node.number_of_children == 1
       child = node.left if !node.left.nil?
       child = node.right if !node.right.nil?
       predecessor.left = child if predecessor.left == node
       predecessor.right = child if predecessor.right == node
+      @root = child if @root == node
       return
     end
 
     # Delete if two children
-    next_smallest = get_smallest_child(node.right)
+    if node.number_of_children == 2
+      next_smallest = get_smallest_child(node.right)
+      next_smallest_predecessor = get_predecessor(next_smallest)
+      # Handle case where next_smallest has no child nodes
+      if next_smallest.number_of_children == 0
+        next_smallest.left = node.left if node.left != next_smallest
+        next_smallest.right = node.right if node.right != next_smallest
+        next_smallest_predecessor.left = nil if next_smallest_predecessor.left = next_smallest
+        next_smallest_predecessor.right = nil if next_smallest_predecessor.right = next_smallest
+        predecessor.left = next_smallest if predecessor.left == node
+        predecessor.right = next_smallest if predecessor.right == node
+        @root = next_smallest if @root == node
+        return
+      end
+      # Handle case where next_smallest has a child
+      if next_smallest.number_of_children > 0
+        next_smallest_predecessor.left = next_smallest.right
+        next_smallest.left = node.left if node.left != next_smallest
+        next_smallest.right = node.right if node.right != next_smallest
+        predecessor.left = next_smallest if predecessor.left == node
+        predecessor.right = next_smallest if predecessor.right == node
+        @root = next_smallest if @root == node
+        return
+      end
+    end
     
   end
 

@@ -13,7 +13,10 @@ class Node
     @right = nil
   end
 
-  def is_leaf?
-    return (self.left.nil? and self.right.nil?)
+  def number_of_children
+    count = 0
+    count += 1 if !self.left.nil?
+    count += 1 if !self.right.nil?
+    return count
   end
 end
