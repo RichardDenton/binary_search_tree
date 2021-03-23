@@ -31,7 +31,7 @@ class Tree
     predecessor = get_predecessor(node)
     
     # Delete the node if it is a leaf node
-    if is_leaf?(node)
+    if node.is_leaf?
       predecessor.left = nil if predecessor.left == node
       predecessor.right = nil if predecessor.right == node
       return
@@ -47,7 +47,8 @@ class Tree
     end
 
     # Delete if two children
-
+    next_smallest = get_smallest_child(node.right)
+    
   end
 
   def pretty_print(node = @root, prefix = '', is_left = true)
@@ -81,7 +82,4 @@ class Tree
     return get_smallest_child(node.left)
   end
 
-  def is_leaf?(node)
-    return (node.left.nil? and node.right.nil?)
-  end
 end
