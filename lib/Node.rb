@@ -12,4 +12,11 @@ class Node
     @left = nil
     @right = nil
   end
+
+  def number_of_children
+    count = 0
+    count += 1 if !self.left.nil?
+    count += 1 if !self.right.nil?
+    return count
+  end
 end
