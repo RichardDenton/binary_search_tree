@@ -28,3 +28,5 @@ test2 = Tree.new([1,2])
 test2.pretty_print
 test2.delete(1)
 test2.pretty_print
+test2.delete(2)
+test2.pretty_print
