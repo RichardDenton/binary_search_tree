@@ -77,6 +77,12 @@ class Tree
     
   end
 
+  def find(value)
+    search_result = search(value)
+    return search_result if search_result.data == value
+    return nil
+  end
+
   def pretty_print(node = @root, prefix = '', is_left = true)
     if @root.nil?
       puts "Empty tree"
@@ -87,6 +93,7 @@ class Tree
     pretty_print(node.left, "#{prefix}#{is_left ? '    ' : '│   '}", true) if node.left
   end
 
+  private
   # Returns the node searched for or its parent leaf is the node does not exist
   def search(value, node = @root)
       return node if value < node.data and node.left.nil?
@@ -96,8 +103,6 @@ class Tree
       return search(value, node.left) if value < node.data
       return search(value, node.right) if value > node.data
   end
-
-  # private
 
   def get_predecessor(search_node, current_node = @root)
     return current_node if current_node.left == search_node or current_node.right == search_node
