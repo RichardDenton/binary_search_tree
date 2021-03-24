@@ -1,7 +1,6 @@
 require_relative 'Node'
 
 class Tree
-  attr_reader :root
   def initialize(num_array)
     @data = num_array.uniq.sort
     @root = build_tree(@data)
@@ -32,7 +31,6 @@ class Tree
     delete_0_children(node) if children == 0
     delete_1_child(node) if children == 1
     delete_2_children(node) if children == 2
-       
   end
 
   def find(value)
