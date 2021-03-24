@@ -23,6 +23,10 @@ test.pretty_print
 puts "Delete 8"
 test.delete(8)
 test.pretty_print
+puts "Find 300"
+puts (test.find(300).data)
+puts "Find 1000"
+puts (test.find(1000))
 
 test2 = Tree.new([1,2])
 test2.pretty_print
