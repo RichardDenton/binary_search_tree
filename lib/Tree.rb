@@ -80,6 +80,18 @@ class Tree
     data_array.push(node.data)
   end
 
+  def height(node)
+    return 0 if node.nil?
+    left_height = height(node.left)
+    right_height = height(node.right)
+
+    if left_height > right_height
+      return (left_height + 1)
+    else
+      return (right_height + 1)
+    end
+  end
+
   private
   # Returns the node searched for or its parent leaf is the node does not exist
   def search(value, node = @root)
