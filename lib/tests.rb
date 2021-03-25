@@ -27,12 +27,14 @@ puts "Find 300"
 puts (test.find(300).data)
 puts "Find 1000"
 puts (test.find(1000))
-puts "Level order"
+puts "\nLevel order"
 puts test.level_order
-puts "Preorder"
+puts "\nPreorder"
 puts test.preorder
-puts "Inorder"
+puts "\nInorder"
 puts test.inorder
+puts "\nPostorder"
+puts test.postorder
 
 test2 = Tree.new([1,2])
 test2.pretty_print

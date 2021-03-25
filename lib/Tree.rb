@@ -70,7 +70,14 @@ class Tree
     return data_array if node.nil?
     inorder(node.left, data_array)
     data_array.push(node.data)
-    inorder(node.right, data_array )
+    inorder(node.right, data_array)
+  end
+
+  def postorder(node = @root, data_array = [])
+    return data_array if node.nil?
+    inorder(node.left, data_array)
+    inorder(node.right, data_array)
+    data_array.push(node.data)
   end
 
   private
