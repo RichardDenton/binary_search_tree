@@ -59,6 +59,13 @@ class Tree
     return level_order(queue, data_array)
   end
 
+  def preorder(node = @root, data_array = [])
+    return data_array if node.nil?
+    data_array.push(node.data)
+    preorder(node.left, data_array)
+    preorder(node.right, data_array)
+  end
+
   private
   # Returns the node searched for or its parent leaf is the node does not exist
   def search(value, node = @root)
