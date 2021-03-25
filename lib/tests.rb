@@ -29,6 +29,8 @@ puts "Find 1000"
 puts (test.find(1000))
 puts "Level order"
 puts test.level_order
+puts "Preorder"
+puts test.preorder
 
 test2 = Tree.new([1,2])
 test2.pretty_print
