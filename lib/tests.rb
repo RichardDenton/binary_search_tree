@@ -35,6 +35,8 @@ puts "\nInorder"
 puts test.inorder
 puts "\nPostorder"
 puts test.postorder
+puts "\nHeight"
+puts test.height(test.find(9))
 
 test2 = Tree.new([1,2])
 test2.pretty_print
