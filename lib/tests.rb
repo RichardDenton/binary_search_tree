@@ -27,6 +27,8 @@ puts "Find 300"
 puts (test.find(300).data)
 puts "Find 1000"
 puts (test.find(1000))
+puts "Level order"
+puts test.level_order
 
 test2 = Tree.new([1,2])
 test2.pretty_print

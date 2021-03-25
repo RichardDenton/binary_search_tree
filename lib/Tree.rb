@@ -49,6 +49,16 @@ class Tree
     pretty_print(node.left, "#{prefix}#{is_left ? '    ' : '│   '}", true) if node.left
   end
 
+  def level_order(queue = [@root], data_array = [])
+    node = queue.shift
+    return data_array if node.nil?
+
+    data_array.push(node.data)
+    queue.push(node.left) if !node.left.nil?
+    queue.push(node.right) if !node.right.nil?
+    return level_order(queue, data_array)
+  end
+
   private
   # Returns the node searched for or its parent leaf is the node does not exist
   def search(value, node = @root)
