@@ -31,6 +31,8 @@ puts "Level order"
 puts test.level_order
 puts "Preorder"
 puts test.preorder
+puts "Inorder"
+puts test.inorder
 
 test2 = Tree.new([1,2])
 test2.pretty_print
