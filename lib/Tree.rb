@@ -92,8 +92,12 @@ class Tree
     end
   end
 
-  def depth(node)
-    return (get_level(node))
+  def depth(node, current_node = @root, level = 0)
+    return 0 if node.nil?
+    return level if current_node == node
+      
+    return depth(node, current_node.left, level += 1) if node < current_node
+    return depth(node, current_node.right, level += 1) if node > current_node
   end
 
   private
@@ -163,13 +167,5 @@ class Tree
       @root = next_smallest if @root == node
       return
     end
-  end
-
-  def get_level(node, current_node = @root, level = 0)
-    return 0 if node.nil?
-    return level if current_node == node
-      
-    return get_level(node, current_node.left, level += 1) if node < current_node
-    return get_level(node, current_node.right, level += 1) if node > current_node
   end
 end
