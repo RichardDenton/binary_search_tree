@@ -75,13 +75,13 @@ class Tree
 
   def postorder(node = @root, data_array = [])
     return data_array if node.nil?
-    inorder(node.left, data_array)
-    inorder(node.right, data_array)
+    postorder(node.left, data_array)
+    postorder(node.right, data_array)
     data_array.push(node.data)
   end
 
   def height(node)
-    return-1 if node.nil?
+    return -1 if node.nil?
     left_height = height(node.left)
     right_height = height(node.right)
 
@@ -98,6 +98,21 @@ class Tree
       
     return depth(node, current_node.left, level += 1) if node < current_node
     return depth(node, current_node.right, level += 1) if node > current_node
+  end
+
+  def balanced?(node = @root)
+    # Check if lefty and right subtrees of node are balanced
+    if height(node.left) - height(node.right) >= 0
+      height_dif = height(node.left) - height(node.right)
+    elsif height(node.right) - height(node.left) >= 0
+      height_dif = height(node.right) - height(node.left)
+    end
+    balanced = height_dif < 2
+    return balanced if !balanced
+
+    balanced = balanced?(node.left) if balanced and !node.left.nil?
+    balanced = balanced?(node.right) if balanced and !node.right.nil?
+    return balanced
   end
 
   private

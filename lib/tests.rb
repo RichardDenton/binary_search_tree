@@ -39,7 +39,13 @@ puts "\nHeight"
 puts test.height(test.find(300))
 puts "\nDepth"
 puts test.depth(test.find(6345))
-puts "\n"
+puts "\nBalanced?"
+puts test.balanced?
+test.insert(6348)
+test.insert(6350)
+test.pretty_print
+puts "\nBalanced?"
+puts test.balanced?
 
 test2 = Tree.new([1,2])
 test2.pretty_print
