@@ -1,6 +1,7 @@
 require_relative 'Node'
 
 class Tree
+  attr_reader :root
   def initialize(num_array)
     @data = num_array.uniq.sort
     @root = build_tree(@data)
@@ -113,6 +114,11 @@ class Tree
     balanced = balanced?(node.left) if balanced and !node.left.nil?
     balanced = balanced?(node.right) if balanced and !node.right.nil?
     return balanced
+  end
+
+  def rebalance
+    new_tree = Tree.new(inorder)
+    @root = new_tree.root
   end
 
   private

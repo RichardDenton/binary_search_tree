@@ -46,6 +46,11 @@ test.insert(6350)
 test.pretty_print
 puts "\nBalanced?"
 puts test.balanced?
+puts "\nRebalance"
+test.rebalance
+puts "\nBalanced?"
+puts test.balanced?
+test.pretty_print
 
 test2 = Tree.new([1,2])
 test2.pretty_print
