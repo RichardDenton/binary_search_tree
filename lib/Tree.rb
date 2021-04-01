@@ -92,6 +92,10 @@ class Tree
     end
   end
 
+  def depth(node)
+    return (get_level(node))
+  end
+
   private
   # Returns the node searched for or its parent leaf is the node does not exist
   def search(value, node = @root)
@@ -159,5 +163,13 @@ class Tree
       @root = next_smallest if @root == node
       return
     end
+  end
+
+  def get_level(node, current_node = @root, level = 0)
+    return 0 if node.nil?
+    return level if current_node == node
+      
+    return get_level(node, current_node.left, level += 1) if node < current_node
+    return get_level(node, current_node.right, level += 1) if node > current_node
   end
 end
