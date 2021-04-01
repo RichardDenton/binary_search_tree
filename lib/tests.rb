@@ -36,7 +36,7 @@ puts test.inorder
 puts "\nPostorder"
 puts test.postorder
 puts "\nHeight"
-puts test.height(test.find(6345))
+puts test.height(test.find(300))
 puts "\nDepth"
 puts test.depth(test.find(6345))
 puts "\n"
