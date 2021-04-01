@@ -81,7 +81,7 @@ class Tree
   end
 
   def height(node)
-    return 0 if node.nil?
+    return-1 if node.nil?
     left_height = height(node.left)
     right_height = height(node.right)
 
